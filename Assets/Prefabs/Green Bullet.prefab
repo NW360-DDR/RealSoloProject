@@ -101,6 +101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   timer: 5
+  moveDir: {x: 0, y: 0}
+  Move: Player
 --- !u!60 &5240630395513454221
 PolygonCollider2D:
   m_ObjectHideFlags: 0

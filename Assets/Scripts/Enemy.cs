@@ -7,13 +7,12 @@ public class Enemy : MonoBehaviour
 {
     public float HP = 1000;
     float startingHP;
-    public BulletSpawner BS;
+    public BulletSpawner[] Spawners;
 
     public Slider HPBar;
     // Start is called before the first frame update
     void Start()
     {
-        BS = GetComponent<BulletSpawner>();
         startingHP = HP;
         
     }
@@ -45,9 +44,9 @@ public class Enemy : MonoBehaviour
         switch (phase)
         {
             case 0:
-                BS.bulletType = BulletSpawner.BulletType.Straight;
-                BS.FireRate = 0.25f;
-                BS.targetPlayer = true;
+                Spawners[0].bulletType = BulletSpawner.BulletType.Straight;
+                Spawners[0].FireRate = 0.2f;
+                Spawners[0].targetPlayer = true;
                 break;
         }
     }

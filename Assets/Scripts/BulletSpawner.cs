@@ -54,9 +54,7 @@ public class BulletSpawner : MonoBehaviour
             Spawned.GetComponent<Bullet>().timer = bulletTimer;
             if (targetPlayer)
             {
-                Vector2 v = player.transform.position - transform.position;
-                float a = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
-                Spawned.transform.eulerAngles = new Vector3(0, 0, a);
+                Spawned.GetComponent<Bullet>().SetMode("Track");
             }
         }
     }

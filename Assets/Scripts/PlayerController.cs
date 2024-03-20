@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
             tempBullet.GetComponent<Bullet>().speed = BulletSpeed;
             timer = 0.0f;
         }
-
+        transform.position = new Vector2(Mathf.Clamp(transform.position.x, -5.5f, 5), Mathf.Clamp(transform.position.y, -4.5f, 4.5f));
     }
 
     private void OnTriggerEnter2D(Collider2D other)
