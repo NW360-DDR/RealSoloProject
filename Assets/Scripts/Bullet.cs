@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     {
         if (timer < 0.0f) Destroy(gameObject); // Hey if our clock runs out we should kill ourselves. Good advice tbh.
         timer -= Time.deltaTime;
-        transform.Translate(transform.up * speed * Time.deltaTime);
+        transform.Translate(transform.up * -1 * speed * Time.deltaTime);
     }
 
     private void OnBecameInvisible()

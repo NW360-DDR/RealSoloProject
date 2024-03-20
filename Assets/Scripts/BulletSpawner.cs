@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class BulletSpawner : MonoBehaviour
 {
@@ -24,16 +23,16 @@ public class BulletSpawner : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Hitbox");
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        timer += Time.deltaTime;
+        timer += Time.fixedDeltaTime;
         // Unless we're shitting bullets in a straight line we probably want to do this.
         if (targetPlayer)
-            transform.right = player.transform.position - transform.position;
+            transform.up = (player.transform.position - transform.position) * -1;
         else if (bulletType == BulletType.Spin) 
             transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z + 1f);
         else if (bulletType == BulletType.Random) 
@@ -53,8 +52,12 @@ public class BulletSpawner : MonoBehaviour
             Spawned = Instantiate(bullet, transform.position, Quaternion.identity);
             Spawned.GetComponent<Bullet>().speed= speed;
             Spawned.GetComponent<Bullet>().timer = bulletTimer;
-            Spawned.transform.rotation= transform.rotation;
-
+            if (targetPlayer)
+            {
+                Vector2 v = player.transform.position - transform.position;
+                float a = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
+                Spawned.transform.eulerAngles = new Vector3(0, 0, a);
+            }
         }
     }
 }
